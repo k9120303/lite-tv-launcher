@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Drawn on the unclipped outer tile; the 3dp ring starts 1dp outside the card,
-     so the card's anti-aliased edge sits under the opaque ring. -->
+<!-- Focus is shown by scale and shadow only; the ring marks move mode. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <shape>
-            <corners android:radius="11dp" />
+            <corners android:radius="10dp" />
             <stroke android:width="3dp" android:color="#4DD0E1" />
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape>
-            <corners android:radius="11dp" />
-            <stroke android:width="3dp" android:color="#FFFFFF" />
         </shape>
     </item>
     <item android:drawable="@android:color/transparent" />

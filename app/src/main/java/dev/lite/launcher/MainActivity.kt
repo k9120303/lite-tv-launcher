@@ -15,6 +15,8 @@ import android.provider.Settings
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.ScrollView
@@ -118,8 +120,7 @@ class MainActivity : Activity() {
     private fun tile(app: App): View {
         val v = LayoutInflater.from(this).inflate(R.layout.tile, grid, false)
         v.tag = app
-        val card = v.findViewById<View>(R.id.card)
-        card.clipToOutline = true
+        v.clipToOutline = true
         val banner = v.findViewById<ImageView>(R.id.banner)
         if (app.banner != null) {
             banner.setImageDrawable(app.banner)
@@ -132,9 +133,8 @@ class MainActivity : Activity() {
 
         v.setOnFocusChangeListener { view, focused ->
             val scale = if (focused) 1.15f else 1f
-            view.animate().scaleX(scale).scaleY(scale).setDuration(120).start()
-            // Shadow comes from the card: the outer view has no background, so no outline.
-            card.animate().translationZ(if (focused) 12 * resources.displayMetrics.density else 0f).setDuration(120).start()
+            view.animate().scaleX(scale).scaleY(scale)
+                .translationZ(if (focused) 12 * resources.displayMetrics.density else 0f).setDuration(120).start()
             if (focused) title.text = if (moving === app) getString(R.string.move_hint) else app.label
         }
         v.setOnClickListener { if (moving != null) endMove() else launch(app.intent) }
@@ -180,9 +180,22 @@ class MainActivity : Activity() {
             Toast.makeText(this, R.string.no_hidden, Toast.LENGTH_SHORT).show()
             return
         }
-        AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+        val builder = AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+        val size = (32 * resources.displayMetrics.density).toInt()
+        val adapter = object : ArrayAdapter<App>(builder.context, android.R.layout.select_dialog_item, hidden) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View =
+                (super.getView(position, convertView, parent) as TextView).apply {
+                    val app = hidden[position]
+                    text = app.label
+                    // Hidden apps have no tile, so their icon isn't attached to any other view.
+                    app.icon.setBounds(0, 0, size, size)
+                    setCompoundDrawablesRelative(app.icon, null, null, null)
+                    compoundDrawablePadding = size / 2
+                }
+        }
+        builder
             .setTitle(R.string.unhide)
-            .setItems(hidden.map { it.label }.toTypedArray()) { _, which ->
+            .setAdapter(adapter) { _, which ->
                 val app = hidden[which]
                 prefs.hidden = prefs.hidden - app.pkg
                 render(app.pkg)
