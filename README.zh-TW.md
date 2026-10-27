@@ -2,28 +2,19 @@
 
 [English](README.md) | **繁體中文**
 
-輕巧、快速、無廣告的 Android TV 桌面。專為記憶體較小的電視（例如小米電視）設計，這類電視執行 PatchWall 或 Google TV 桌面時容易卡頓。
+輕巧、快速、無廣告的 Android TV 桌面。  
+專為記憶體較小的電視（例如小米電視）設計，這類電視執行 PatchWall 或 Google TV 桌面時容易卡頓。
 
+只用原生 Android View 加 Kotlin。不使用 AndroidX、不依賴任何函式庫、沒有網路存取權限、不追蹤使用者。  
 本專案 fork 自 [anujmv/lite-tv-launcher](https://github.com/anujmv/lite-tv-launcher)，加入繁體中文、網路狀態圖示和一些介面調整，詳見[本 fork 的修改](#本-fork-的修改)。
 
 ![截圖](docs/screenshot.png)
 
+原專案（小米電視）的實測結果：
 |              | Google TV 桌面 | FLauncher | **Lite TV Launcher** |
 |--------------|---------------:|----------:|---------------------:|
-| APK 大小     | —              | 26 MB     | **約 44 KB**         |
-| 記憶體（PSS）| 約 164 MB      | 約 43 MB  | **約 22 MB**         |
-
-上表數據來自原專案（小米電視）。本 fork 的實測結果：
-
-| | 結果 |
-|---|---|
-| APK 大小 | 45,630 bytes（約 45 KB） |
-| 記憶體（TOTAL PSS），安裝 2 個電視 App | 約 22.9 MB |
-| 記憶體（TOTAL PSS），安裝 22 個電視 App | 約 26.1 MB |
-
-記憶體是在 Android 16（API 36）模擬器上，用 `adb shell dumpsys meminfo dev.lite.launcher` 量測多次冷啟動後取平均。每次量測的誤差約 200–500 KB。
-
-只用原生 Android View 加 Kotlin。不使用 AndroidX、不依賴任何函式庫、沒有網路存取權限、不追蹤使用者。
+| APK 大小     | —              | 26 MB     | **約 45 KB**         |
+| 記憶體（PSS）| 約 164 MB      | 約 43 MB  | **約 23 MB**         |
 
 ## 功能
 
