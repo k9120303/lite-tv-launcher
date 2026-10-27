@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Focus is shown by scale and shadow only; the ring marks move mode. -->
+<!-- Focus is shown by scale and shadow only; a thin white ring marks move mode. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <shape>
             <corners android:radius="10dp" />
-            <stroke android:width="3dp" android:color="#4DD0E1" />
+            <stroke android:width="2dp" android:color="#FFFFFF" />
         </shape>
     </item>
     <item android:drawable="@android:color/transparent" />
