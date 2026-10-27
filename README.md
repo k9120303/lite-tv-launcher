@@ -2,28 +2,19 @@
 
 **English** | [繁體中文](README.zh-TW.md)
 
-A tiny, fast, ad-free home screen for Android TV. Built for low-RAM TVs (like Xiaomi Mi TV) where PatchWall and the Google TV launcher lag.
+A tiny, fast, ad-free home screen for Android TV.  
+Built for low-RAM TVs (like Xiaomi Mi TV) where PatchWall and the Google TV launcher lag.
 
+Plain Android Views + Kotlin. No AndroidX, no libraries, no internet permission, no tracking.  
 This is a fork of [anujmv/lite-tv-launcher](https://github.com/anujmv/lite-tv-launcher) with Traditional Chinese, a network status icon and a few UI tweaks. See [What this fork changes](#what-this-fork-changes).
 
 ![Screenshot](docs/screenshot.png)
 
+Measured by the upstream project (Xiaomi Mi TV):
 |            | Google TV launcher | FLauncher | **Lite TV Launcher** |
 |------------|-------------------:|----------:|---------------------:|
-| APK size   | —                  | 26 MB     | **~44 KB**           |
-| RAM (PSS)  | ~164 MB            | ~43 MB    | **~22 MB**           |
-
-Figures above are from the upstream project (Xiaomi Mi TV). Measured for this fork:
-
-| | Result |
-|---|---|
-| APK size | 45,630 bytes (~45 KB) |
-| RAM (TOTAL PSS), 2 TV apps installed | ~22.9 MB |
-| RAM (TOTAL PSS), 22 TV apps installed | ~26.1 MB |
-
-RAM was measured with `adb shell dumpsys meminfo dev.lite.launcher` on an Android 16 (API 36) emulator, averaging several cold starts. Each run varies by about 200–500 KB.
-
-Plain Android Views + Kotlin. No AndroidX, no libraries, no internet permission, no tracking.
+| APK size   | —                  | 26 MB     | **~45 KB**           |
+| RAM (PSS)  | ~164 MB            | ~43 MB    | **~23 MB**           |
 
 ## Features
 
