@@ -1,0 +1,15 @@
+<resources>
+    <string name="settings">設定</string>
+    <string name="hidden_apps">隱藏的應用程式</string>
+    <string name="move">移動</string>
+    <string name="hide">隱藏</string>
+    <string name="app_info">應用程式資訊</string>
+    <string name="uninstall">解除安裝</string>
+    <string name="unhide">重新顯示</string>
+    <string name="no_hidden">沒有隱藏的應用程式</string>
+    <string name="cannot_open">無法開啟應用程式</string>
+    <string name="move_hint">用方向鍵移動 · 按 OK 完成</string>
+    <string name="net_on">網路已連線</string>
+    <string name="net_off">沒有網路</string>
+    <string name="date_format">M月d日 EEEE</string>
+</resources>

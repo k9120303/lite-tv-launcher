@@ -22,6 +22,8 @@
             android:fontFamily="sans-serif-light"
             android:maxLines="1"
             android:textColor="#E6FFFFFF"
+            android:shadowColor="#80000000"
+            android:shadowRadius="6"
             android:textSize="22sp" />
 
         <ImageButton
@@ -32,6 +34,15 @@
             android:contentDescription="@string/hidden_apps"
             android:focusable="true"
             android:src="@drawable/ic_hidden" />
+
+        <ImageButton
+            android:id="@+id/net"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/btn_bg"
+            android:focusable="true"
+            android:src="@drawable/ic_wifi" />
 
         <ImageButton
             android:id="@+id/settings"
@@ -57,14 +68,18 @@
                 android:format12Hour="h:mm"
                 android:format24Hour="HH:mm"
                 android:textColor="#FFFFFF"
+                android:shadowColor="#80000000"
+                android:shadowRadius="6"
                 android:textSize="34sp" />
 
             <TextClock
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:format12Hour="EEE, d MMM"
-                android:format24Hour="EEE, d MMM"
-                android:textColor="#99FFFFFF"
+                android:format12Hour="@string/date_format"
+                android:format24Hour="@string/date_format"
+                android:textColor="#CCFFFFFF"
+                android:shadowColor="#80000000"
+                android:shadowRadius="6"
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>

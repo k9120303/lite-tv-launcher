@@ -10,4 +10,7 @@
     <string name="no_hidden">No hidden apps</string>
     <string name="cannot_open">Cannot open app</string>
     <string name="move_hint">Use arrows to move · OK to finish</string>
+    <string name="net_on">Network connected</string>
+    <string name="net_off">No network</string>
+    <string name="date_format">EEE, d MMM</string>
 </resources>

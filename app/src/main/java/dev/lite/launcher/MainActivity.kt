@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -45,7 +47,8 @@ class MainActivity : Activity() {
 
         findViewById<View>(R.id.settings).setOnClickListener { launch(Intent(Settings.ACTION_SETTINGS)) }
         findViewById<View>(R.id.hidden).setOnClickListener { showHidden() }
-        listOf(R.id.settings, R.id.hidden).forEach { id ->
+        findViewById<View>(R.id.net).setOnClickListener { launch(Intent(Settings.ACTION_WIFI_SETTINGS)) }
+        listOf(R.id.settings, R.id.hidden, R.id.net).forEach { id ->
             findViewById<View>(id).setOnFocusChangeListener { v, focused ->
                 if (focused) title.text = v.contentDescription
             }
@@ -65,6 +68,17 @@ class MainActivity : Activity() {
         unregisterReceiver(packageReceiver)
         io.shutdown()
         super.onDestroy()
+    }
+
+    // Checked once per return to home; no listener stays registered.
+    @Suppress("DEPRECATION") // activeNetworkInfo is the only API that also works on 21-23
+    override fun onResume() {
+        super.onResume()
+        val on = (getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo?.isConnected == true
+        findViewById<ImageView>(R.id.net).apply {
+            if (on) clearColorFilter() else setColorFilter(Color.RED)
+            contentDescription = getString(if (on) R.string.net_on else R.string.net_off)
+        }
     }
 
     // Home pressed while already home: jump back to the first app.
@@ -104,7 +118,8 @@ class MainActivity : Activity() {
     private fun tile(app: App): View {
         val v = LayoutInflater.from(this).inflate(R.layout.tile, grid, false)
         v.tag = app
-        v.clipToOutline = true
+        val card = v.findViewById<View>(R.id.card)
+        card.clipToOutline = true
         val banner = v.findViewById<ImageView>(R.id.banner)
         if (app.banner != null) {
             banner.setImageDrawable(app.banner)
@@ -116,8 +131,10 @@ class MainActivity : Activity() {
         }
 
         v.setOnFocusChangeListener { view, focused ->
-            val scale = if (focused) 1.1f else 1f
-            view.animate().scaleX(scale).scaleY(scale).translationZ(if (focused) 8f else 0f).setDuration(120).start()
+            val scale = if (focused) 1.15f else 1f
+            view.animate().scaleX(scale).scaleY(scale).setDuration(120).start()
+            // Shadow comes from the card: the outer view has no background, so no outline.
+            card.animate().translationZ(if (focused) 12 * resources.displayMetrics.density else 0f).setDuration(120).start()
             if (focused) title.text = if (moving === app) getString(R.string.move_hint) else app.label
         }
         v.setOnClickListener { if (moving != null) endMove() else launch(app.intent) }
@@ -140,6 +157,8 @@ class MainActivity : Activity() {
         )
         AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
             .setTitle(app.label)
+            // Own copy: the tile may already show this Drawable, and a Drawable can't sit in two views.
+            .setIcon(app.icon.constantState?.newDrawable(resources) ?: app.icon)
             .setItems(actions) { _, which ->
                 val uri = Uri.fromParts("package", app.pkg, null)
                 when (which) {
