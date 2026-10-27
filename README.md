@@ -13,8 +13,8 @@ This is a fork of [anujmv/lite-tv-launcher](https://github.com/anujmv/lite-tv-la
 Measured by the upstream project (Xiaomi Mi TV):
 |            | Google TV launcher | FLauncher | **Lite TV Launcher** |
 |------------|-------------------:|----------:|---------------------:|
-| APK size   | —                  | 26 MB     | **~45 KB**           |
-| RAM (PSS)  | ~164 MB            | ~43 MB    | **~23 MB**           |
+| APK size   | —                  | 26 MB     | **~44 KB**           |
+| RAM (PSS)  | ~164 MB            | ~43 MB    | **~22 MB**           |
 
 ## Features
 
