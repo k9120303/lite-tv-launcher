@@ -2,10 +2,9 @@
 
 **English** | [繁體中文](README.zh-TW.md)
 
-A tiny, fast, ad-free home screen for Android TV.  
+A tiny, fast, ad-free home screen for Android TV. Plain Android Views + Kotlin. No AndroidX, no libraries, no internet permission, no tracking. 
 Built for low-RAM TVs (like Xiaomi Mi TV) where PatchWall and the Google TV launcher lag.
 
-Plain Android Views + Kotlin. No AndroidX, no libraries, no internet permission, no tracking.  
 This is a fork of [anujmv/lite-tv-launcher](https://github.com/anujmv/lite-tv-launcher) with Traditional Chinese, a network status icon and a few UI tweaks. See [What this fork changes](#what-this-fork-changes).
 
 ![Screenshot](docs/screenshot.png)
