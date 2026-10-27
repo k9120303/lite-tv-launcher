@@ -2,10 +2,9 @@
 
 [English](README.md) | **繁體中文**
 
-輕巧、快速、無廣告的 Android TV 桌面。  
+輕巧、快速、無廣告的 Android TV 桌面。只用原生 Android View 加 Kotlin。不使用 AndroidX、不依賴任何函式庫、沒有網路存取權限、不追蹤使用者。
 專為記憶體較小的電視（例如小米電視）設計，這類電視執行 PatchWall 或 Google TV 桌面時容易卡頓。
 
-只用原生 Android View 加 Kotlin。不使用 AndroidX、不依賴任何函式庫、沒有網路存取權限、不追蹤使用者。  
 本專案 fork 自 [anujmv/lite-tv-launcher](https://github.com/anujmv/lite-tv-launcher)，加入繁體中文、網路狀態圖示和一些介面調整，詳見[本 fork 的修改](#本-fork-的修改)。
 
 ![截圖](docs/screenshot.png)
